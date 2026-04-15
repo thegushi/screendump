@@ -45,6 +45,20 @@ like a live topology map:
 13 vim named.conf [rider.gushi.org]
 ```
 
+The window title uses the first and last token of the command line rather than
+the full command. This keeps titles readable when you're doing something like:
+
+```
+ssh -v -v -o KexAlgorithms=+ssh-dsa -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa_legacy zulius@rider.gushi.org
+```
+
+Rather than that whole mess appearing in your window list, you get:
+
+```
+ssh zulius@rider.gushi.org [horse.gushi.org]
+```
+
 This works by having the shell emit an escape sequence that GNU screen knows
 how to interpret as a window title update. Specifically, `\033k...\033\\`
 (`ESC k ... ESC \`) — screen watches for this sequence in the output stream
@@ -62,20 +76,6 @@ Since `screendump` runs on the machine hosting your screen session rather than
 on the remote, it works regardless of what's on the other end of the SSH
 connection — including routers, switches, or anything else running a minimal
 shell that wouldn't know what to do with a bash script.
-
-The window title uses the first and last token of the command line rather than
-the full command. This keeps titles readable when you're doing something like:
-
-```
-ssh -v -v -o KexAlgorithms=+ssh-dsa -o StrictHostKeyChecking=no \
-    -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa_legacy zulius@rider.gushi.org
-```
-
-Rather than that whole mess appearing in your window list, you get:
-
-```
-ssh zulius@rider.gushi.org [horse.gushi.org]
-```
 
 ## Dependencies
 
