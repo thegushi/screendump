@@ -59,12 +59,14 @@ Rather than that whole mess appearing in your window list, you get:
 ssh zulius@rider.gushi.org [horse.gushi.org]
 ```
 
-This works by having the shell emit an escape sequence that GNU screen knows
+Screen autotitling works by having the shell emit an escape sequence that GNU screen knows
 how to interpret as a window title update. Specifically, `\033k...\033\\`
 (`ESC k ... ESC \`) — screen watches for this sequence in the output stream
 and uses the content between the delimiters to set the current window's title.
 This is separate from the more common xterm title sequence (`\033]0;...\007`);
-screen has its own. Setting titles makes navigation easier, but doesn't
+screen has its own. 
+
+Setting titles makes navigation easier, but doesn't
 inherently solve the scrollback-capturing problem. For that, we have
 `screendump`.
 
