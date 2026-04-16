@@ -4,13 +4,13 @@ GNU screen window titles + scrollback capture with git sync.
 
 Sets your screen window titles automatically based on what you're running,
 and lets you dump any window's full scrollback buffer to a file that gets
-committed and pushed to a git repo — so you can pull it down anywhere
+committed and pushed to a git repo, so you can pull it down anywhere
 (VS Code, your Mac, wherever) without any polling daemon or new protocol.
 
 ## The problem this solves
 
 My primary work "desktop" is often a single GNU screen session on a remote
-server, connected to multiple machines — channel-surfing between them,
+server, connected to multiple machines, channel-surfing between them,
 editing files, running Alpine, doing compiles, watching logs, etc.
 
 Sometimes I have a long piece of output (say, `show run` on a router) that I
@@ -61,7 +61,7 @@ ssh zulius@rider.gushi.org [horse.gushi.org]
 
 Screen autotitling works by having the shell emit an escape sequence that GNU screen knows
 how to interpret as a window title update. Specifically, `\033k...\033\\`
-(`ESC k ... ESC \`) — screen watches for this sequence in the output stream
+(`ESC k ... ESC \`) Screen watches for this sequence in the output stream
 and uses the content between the delimiters to set the current window's title.
 This is separate from the more common xterm title sequence (`\033]0;...\007`);
 screen has its own. 
