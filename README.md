@@ -9,7 +9,7 @@ committed and pushed to a git repo — so you can pull it down anywhere
 
 ## The problem this solves
 
-My primary work desktop is often a single GNU screen session on a remote
+My primary work "desktop" is often a single GNU screen session on a remote
 server, connected to multiple machines — channel-surfing between them,
 editing files, running Alpine, doing compiles, watching logs, etc.
 
