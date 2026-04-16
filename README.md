@@ -40,7 +40,7 @@ like a live topology map:
 
 ```
  0 bash [horse.gushi.org]
- 3 ssh rider [horse.gushi.org]
+ 3 ssh durpleton [horse.gushi.org]
  7 [root] tail syslog [glendale.gushi.org]
 13 vim named.conf [rider.gushi.org]
 ```
