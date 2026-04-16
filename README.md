@@ -18,12 +18,12 @@ need to capture for annotation elsewhere.
 
 In a normal SSH session, you can just use your mouse wheel or trackpad to
 scroll up and copy/paste. But scrollback within iTerm is useless inside GNU
-screen — anything in iTerm's scrollback buffer is polluted by output from
+screen -- anything in iTerm's scrollback buffer is polluted by output from
 prior screen windows, not necessarily the current one.
 
 GNU screen does have its own keyboard-driven scrollback mode (enter it with
 `Ctrl-A [`, then use `B` and `F` to move a screen-length at a time), and
-screen has its own paste buffer that works between windows — but unless you
+screen has its own paste buffer that works between windows, but unless you
 paste your scrollback into a temporary file and then `scp` that file to your
 client machine, that paste buffer isn't useful for getting content back to
 where you're actually working.
@@ -64,7 +64,7 @@ how to interpret as a window title update. Specifically, `\033k...\033\\`
 (`ESC k ... ESC \`) Screen watches for this sequence in the output stream
 and uses the content between the delimiters to set the current window's title.
 This is separate from the more common xterm title sequence (`\033]0;...\007`);
-screen has its own. 
+screen has its own.
 
 Setting titles makes navigation easier, but doesn't
 inherently solve the scrollback-capturing problem. For that, we have
@@ -76,13 +76,13 @@ bare git repo. Your other machines just `git pull`.
 
 Since `screendump` runs on the machine hosting your screen session rather than
 on the remote, it works regardless of what's on the other end of the SSH
-connection — including routers, switches, or anything else running a minimal
+connection, including routers, switches, or anything else running a minimal
 shell that wouldn't know what to do with a bash script.
 
 ## Dependencies
 
 - [GNU screen](https://www.gnu.org/software/screen/)
-- [bash-preexec](https://github.com/rcaloras/bash-preexec) — provides `preexec` and `precmd` hook functions for bash. Unlike tcsh and zsh, bash has no built-in equivalent; bash-preexec grafts them in by wrapping `$PROMPT_COMMAND` and the `DEBUG` trap.
+- [bash-preexec](https://github.com/rcaloras/bash-preexec) -- provides `preexec` and `precmd` hook functions for bash. Unlike tcsh and zsh, bash has no built-in equivalent; bash-preexec grafts them in by wrapping `$PROMPT_COMMAND` and the `DEBUG` trap.
 - `git`
 
 ## Setup
@@ -130,7 +130,7 @@ git clone you@horse:scrollback.git ~/scrollback
 ```
 
 Then `git pull` whenever you want the latest dumps. Or open the directory in
-VS Code — hit the sync button when you need it. Editors like VS Code that
+VS Code, hit the sync button when you need it. Editors like VS Code that
 support automatic git refresh can make this even more seamless, pulling new
 dumps in the background as long as you have SSH keys set up for the remote.
 
@@ -171,8 +171,8 @@ don't need.)
 
 If your effective UID is 0, a `[root]` prefix is prepended to the window
 title automatically. Since this is checked on every `preexec` and `precmd`
-call, it works regardless of how you elevated — `su`, `sudo -i`, `ksu`,
-whatever — and clears itself as soon as you drop back to your normal user:
+call, it works regardless of how you elevated -- `su`, `sudo -i`, `ksu`,
+whatever -- and clears itself as soon as you drop back to your normal user:
 
 ```
  0 bash [horse.gushi.org]
@@ -190,7 +190,7 @@ title updates to reflect what you're running on `rider`. Hop to a third
 machine that also has it, same thing.
 
 If a remote host *doesn't* have the script installed, the title simply stays
-as `ssh rider.gushi.org [horse.gushi.org]` — the last thing `preexec` saw before you left. That's
+as `ssh rider.gushi.org [horse.gushi.org]` -- the last thing `preexec` saw before you left. That's
 still useful: you can see from the window list that the window is in an SSH
 session and where it went, you just won't see what's running there.
 
@@ -206,4 +206,4 @@ session and where it went, you just won't see what's running there.
 
 ## License
 
-[ISC](LICENSE) — because of course.
+[ISC](LICENSE) -- because of course.
