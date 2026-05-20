@@ -83,6 +83,7 @@ screendump() {
     local outfile=~/scrollback/${safe_title}-$(date +%Y%m%d%H%M).txt
 
     screen -S "$STY" -p "$window" -X hardcopy -h "$outfile" 2>/dev/null \
+        && sleep 2 \
         && cd ~/scrollback \
         && git add -A \
         && git commit -m "$safe_title" > /dev/null 2>&1 \
